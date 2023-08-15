@@ -23,7 +23,7 @@ jobs:
 
       - name: Check if previous workflow is still running
         id: plan-status
-        if: steps.last_status.outputs.last_status == 'failure'   
+        if: steps.last_status.outputs.last_status == 'running'   
         run: exit 1
           
       - name: Git checkout
