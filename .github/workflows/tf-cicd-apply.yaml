@@ -20,9 +20,13 @@ jobs:
         id: last_status
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check if previous workflow is still running
+        id: plan-status
+        if: steps.last_status.outputs.last_status == 'failure'   
+        run: exit 1
           
       - name: Git checkout
-        if: ${{ success() && steps.last_status.outputs.last_status != 'running' }}
         id: checkout
         uses: actions/checkout@v3
 
