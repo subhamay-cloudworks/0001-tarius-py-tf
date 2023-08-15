@@ -15,16 +15,13 @@ jobs:
   sonar-scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Get previous workflow status
-        uses: Mercymeilya/last-workflow-status@v0.3.3
-        id: last_status
+      - name: Wait for previous run to succeed
+        uses: lewagon/wait-on-check-action@v1.3.1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Check if previous workflow is still running
-        id: plan-status
-        if: steps.last_status.outputs.last_status == 'running'   
-        run: exit 1
+          ref: ${{ github.ref }}
+          check-name: 'Check previous run status'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
           
       - name: Git checkout
         id: checkout
