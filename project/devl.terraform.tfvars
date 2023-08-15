@@ -38,4 +38,4 @@ lambda_function_description    = "Tarius Lambda Function to load a file from S3 
 memory_size                    = 256
 runtime                        = "python3.9"
 timeout                        = 300
-reserved_concurrent_executions = 1
+reserved_concurrent_executions = 3
