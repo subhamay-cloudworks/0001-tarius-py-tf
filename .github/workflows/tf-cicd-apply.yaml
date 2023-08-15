@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - '**/README.md'
 
 permissions:
   id-token: write # This is required for aws oidc connection
@@ -21,7 +19,7 @@ jobs:
         id: checkout
         uses: actions/checkout@v3
 
-      - uses: dorny/paths-filter@v2
+      - uses: dorny/paths-filter@v2.11.1
         id: changes
         with:
           working-directory: ${{ github.workspace }}
