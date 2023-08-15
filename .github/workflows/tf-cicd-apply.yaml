@@ -26,9 +26,9 @@ jobs:
         with:
           working-directory: ${{ github.workspace }}
           filters: |
-            project:
+            src:
               - 'project/**'
-
+              - 'modules/**'
           list-files: 'shell'
 
       - name: SonarCloud Scan
