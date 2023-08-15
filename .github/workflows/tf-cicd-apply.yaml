@@ -27,7 +27,7 @@ jobs:
             src:
               - 'project/**'
               - 'modules/**'
-          list-files: 'shell'
+          list-files: 'json'
 
       - name: SonarCloud Scan
         if: ${{ steps.changes.outputs.src == 'true' }}
