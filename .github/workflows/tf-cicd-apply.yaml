@@ -15,19 +15,17 @@ jobs:
   sonar-scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Wait for previous run to succeed
-        uses: lewagon/wait-on-check-action@v1.3.1
-        with:
-          ref: ${{ github.ref }}
-          check-name: 'Check previous run status'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
-        env:
-          RUNNING_WORKFLOW_NAME: "Build, Plan and Deploy Stack"
-          
       - name: Git checkout
         id: checkout
         uses: actions/checkout@v3
+
+      - name: Wait on previous run
+        uses: ./
+        with:
+          ref: ${{ github.sha }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          running-workflow-name: "Build, Plan and Deploy Stack"
+          check-regexp: .?-task
 
       - uses: dorny/paths-filter@v2.11.1
         id: changes
