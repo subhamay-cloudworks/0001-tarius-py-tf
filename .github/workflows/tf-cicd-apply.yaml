@@ -22,8 +22,8 @@ jobs:
         with:
           working-directory: ${{ github.workspace }}
           filters: |
-            src:
-              - '**'
+            project:
+              - 'project/**'
 
           list-files: 'json'
 
