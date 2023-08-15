@@ -22,6 +22,8 @@ jobs:
           check-name: 'Check previous run status'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
+        env:
+          RUNNING_WORKFLOW_NAME: "Build, Plan and Deploy Stack"
           
       - name: Git checkout
         id: checkout
