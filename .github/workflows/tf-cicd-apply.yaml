@@ -24,8 +24,8 @@ jobs:
             src:
               - 'modules/**'
               - 'project/**' 
-          list-files: '*'
-          
+          list-files: 'json'
+
       - name: SonarCloud Scan
         if: ${{ steps.changes.outputs.src == 'true' }}
         uses: sonarsource/sonarcloud-github-action@master
