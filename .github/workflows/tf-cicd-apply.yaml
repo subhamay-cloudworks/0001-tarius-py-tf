@@ -23,9 +23,11 @@ jobs:
           filters: |
             src:
               - 'modules/**'
-              - 'project/**'
+              - 'project/**' 
+          list-files: '*'
+          
       - name: SonarCloud Scan
-        if: steps.changes.outputs.src == 'true'
+        if: ${{ steps.changes.outputs.src == 'true' }}
         uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
