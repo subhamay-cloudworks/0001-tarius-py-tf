@@ -45,6 +45,7 @@ jobs:
   ## Plan and Deploy Development
   devl:
     needs: sonar-scan
+    if: ${{ needs.sonar-scan.changes.outputs.src == 'true' }}
     uses: subhamay-gh-actions/tfapply/.github/workflows/tf-apply.yaml@v1
     with:
       tfvars_filename: devl.terraform.tfvars
