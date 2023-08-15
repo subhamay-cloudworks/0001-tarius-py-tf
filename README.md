@@ -13,7 +13,6 @@ This sample project demonstrate the capability of loading a .csv file into a Dyn
 ## Getting Started
 
 ### Dependencies
-
 * Create a Customer Managed KMS Key in the region where you want to create the stack.
 * Modify the KMS Key Policy to let the IAM user encrypt / decrypt using any resource using the created KMS Key.
 * Setup AWS CLI with an user having appropriate access to create the required resources.

@@ -15,7 +15,14 @@ jobs:
   sonar-scan:
     runs-on: ubuntu-latest
     steps:
+      - name: Get previous workflow status
+        uses: Mercymeilya/last-workflow-status@v0.3.3
+        id: last_status
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          
       - name: Git checkout
+        if: ${{ success() && steps.last_status.outputs.last_status != 'running' }}
         id: checkout
         uses: actions/checkout@v3
 
@@ -27,13 +34,13 @@ jobs:
             src:
               - 'project/**'
               - 'modules/**'
-          list-files: 'json'
+          list-files: 'shell'
 
       - name: SonarCloud Scan
         if: ${{ steps.changes.outputs.src == 'true' }}
         uses: sonarsource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_CLOUD_TOKEN }}
         with:
           args: >
